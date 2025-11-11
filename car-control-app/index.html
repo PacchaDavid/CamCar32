@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Control de Explorador Robótico - SPA</title>
+    <link rel="stylesheet" href="index.css">
+    <link rel="icon" href="favicon.png">
+</head>
+<body>
+    <div class="container">
+        <h1>ROBOTIC EXPLORER CONTROL</h1>
+
+        <div class="headlights-button" id="headlightsButton">
+            <svg viewBox="0 0 24 24">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-2-13.5l-3 3v5h2v-3.5l3-3v3.5h2v-5h-2v3.5l-3 3v-3.5z"/>
+            </svg>
+            <span>HEADLIGHTS<br>ON/OFF</span>
+        </div>
+
+        <!-- Controles de dirección Izquierdos: LEFT y REVERSE -->
+        <div class="controls left-controls">
+            <div class="control-button" id="leftButton">
+                <svg viewBox="0 0 24 24">
+                    <path d="M12 4v16m-8-8h16M7 9l-5 3 5 3V9z"/>
+                </svg>
+            </div>
+            <div class="control-button" id="rightButton">
+                <svg viewBox="0 0 24 24">
+                    <path d="M12 4v16m8-8H4M17 15l5-3-5-3v6z"/>
+                </svg>
+            </div>
+        </div>
+
+        <div class="camera-section">
+            <div class="camera-head">
+                <div class="camera-lens"></div>
+            </div>
+            <div class="camera-feed">
+                <!-- Aquí se cargaría el stream de video de la cámara física -->
+                <img id="camera-image" src="#" alt="Live Camera Feed">
+                <!-- La URL de la imagen es un placeholder, se reemplazaría con el stream real -->
+            </div>
+        </div>
+
+        <!-- Controles de dirección Derechos: FORWARD y RIGHT -->
+        <div class="controls right-controls">
+            <div class="control-button" id="forwardButton">
+                <svg viewBox="0 0 24 24">
+                    <path d="M12 4v16m8-8H4M17 7l-5-5-5 5h10z"/>
+                </svg>
+            </div>
+            <div class="control-button" id="reverseButton">
+                <svg viewBox="0 0 24 24">
+                    <path d="M12 20v-16M4 12h16M7 17l5 5 5-5H7z"/>
+                </svg>
+            </div>
+        </div>
+
+        <div class="sliders-section">
+            <div class="slider-group">
+                <label for="speedSlider">SPEED</label>
+                <div class="slider-wrapper">
+                    <span class="slider-value" id="speedValue">0%</span>
+                    <input type="range" min="0" max="255" value="0" class="slider" id="speedSlider">
+                    <span class="slider-value">100%</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="src/main.js" ></script>
+</body>
+</html>

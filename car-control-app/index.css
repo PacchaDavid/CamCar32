@@ -1,0 +1,425 @@
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #0d1117;
+  /* Fondo oscuro */
+  color: #c9d1d9;
+  /* Texto claro */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+.container {
+  background-color: #161b22;
+  /* Contenedor principal más oscuro */
+  border-radius: 15px;
+  padding: 30px;
+  box-shadow: 0 0 30px rgba(0, 255, 255, 0.2);
+  width: 90%;
+  max-width: 1000px;
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  grid-template-rows: auto auto auto;
+  gap: 25px;
+  position: relative;
+  border: 1px solid #00ffff;
+  /* Borde cian */
+  overflow: hidden;
+}
+
+.container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at center, rgba(0, 255, 255, 0.1) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+h1 {
+  grid-column: 1 / -1;
+  text-align: center;
+  color: #00ffff;
+  /* Cian */
+  margin-bottom: 25px;
+  font-size: 1.8em;
+  letter-spacing: 1px;
+  text-shadow: 0 0 10px rgba(0, 255, 255, 0.6);
+  z-index: 1;
+}
+
+.camera-section {
+  grid-column: 2 / 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  background-color: #010409;
+  border-radius: 10px;
+  padding: 15px;
+  box-shadow: inset 0 0 15px rgba(0, 255, 255, 0.3);
+  border: 1px solid #00ffff;
+  z-index: 1;
+}
+
+.camera-feed {
+  width: 100%;
+  max-width: 500px;
+  aspect-ratio: 16/9;
+  /* Aspect ratio común para video */
+  background-color: #333;
+  border-radius: 8px;
+  overflow: hidden;
+  position: relative;
+  border: 2px solid #00ffff;
+  box-shadow: 0 0 15px rgba(0, 255, 255, 0.5);
+}
+
+.camera-feed img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.camera-head {
+  position: absolute;
+  top: -15px;
+  /* Ajusta para que la cámara quede un poco por encima */
+  width: 60px;
+  height: 30px;
+  background-color: #333;
+  border-radius: 0 0 15px 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #00ffff;
+  box-shadow: 0 5px 10px rgba(0, 255, 255, 0.2);
+  z-index: 2;
+  /* Para que esté sobre el borde del feed */
+}
+
+.camera-lens {
+  width: 20px;
+  height: 20px;
+  background-color: #000;
+  border-radius: 50%;
+  border: 2px solid #555;
+  position: relative;
+  overflow: hidden;
+}
+
+.camera-lens::before {
+  content: '';
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 8px;
+  height: 8px;
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+}
+
+/* Estilos para los grupos de botones de dirección */
+.controls {
+  display: flex;
+  flex-direction: column;
+  /* Apila los botones verticalmente */
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+  /* Centra los botones horizontalmente */
+  z-index: 1;
+}
+
+.control-button {
+  width: 90px;
+  height: 90px;
+  background-color: #2a343d;
+  border: 2px solid #00ffff;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.2em;
+  font-weight: bold;
+  color: #00ffff;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  box-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
+  text-shadow: 0 0 5px rgba(0, 255, 255, 0.6);
+  user-select: none;
+}
+
+.control-button:hover {
+  background-color: #00ffff;
+  color: #0d1117;
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.8);
+  transform: scale(1.05);
+}
+
+.control-button:active {
+  transform: scale(0.98);
+  box-shadow: 0 0 5px rgba(0, 255, 255, 0.5);
+}
+
+.control-button svg {
+  fill: #00ffff;
+  width: 50px;
+  height: 50px;
+  transition: fill 0.2s ease-in-out;
+}
+
+.control-button:hover svg {
+  fill: #0d1117;
+}
+
+.headlights-button {
+  position: absolute;
+  top: 25px;
+  right: 25px;
+  background-color: #2a343d;
+  border: 2px solid #00ffff;
+  border-radius: 50%;
+  width: 80px;
+  /* Aumenta el ancho */
+  height: 80px;
+  /* Aumenta la altura */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  box-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
+  transition: all 0.2s ease-in-out;
+  z-index: 1;
+  padding: 5px;
+  /* Añade un poco de padding */
+  box-sizing: border-box;
+  /* Para que el padding no afecte el ancho total */
+}
+
+.headlights-button:hover {
+  background-color: #00ffff;
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.8);
+  transform: scale(1.05);
+}
+
+.headlights-button svg {
+  fill: #00ffff;
+  width: 35px;
+  /* Ajusta el tamaño del icono */
+  height: 35px;
+  /* Ajusta el tamaño del icono */
+  transition: fill 0.2s ease-in-out;
+  margin-bottom: 2px;
+  /* Espacio entre icono y texto */
+}
+
+.headlights-button:hover svg {
+  fill: #0d1117;
+}
+
+.headlights-button span {
+  font-size: 0.7em;
+  /* Mantén un tamaño de fuente pequeño */
+  color: #00ffff;
+  text-align: center;
+  line-height: 1;
+  /* Asegura que el texto no tenga espacio extra */
+  max-width: 100%;
+  /* Asegura que el texto no se desborde */
+  display: block;
+  /* Para que `max-width` funcione */
+  transition: color 0.2s ease-in-out;
+}
+
+.headlights-button:hover span {
+  color: #0d1117;
+}
+
+.headlights-button.active {
+  background-color: #00ffff;
+  color: #0d1117;
+  box-shadow: 0 0 20px rgba(0, 255, 255, 1);
+}
+
+.headlights-button.active svg {
+  fill: #0d1117;
+}
+
+.headlights-button.active span {
+  color: #0d1117;
+}
+
+.sliders-section {
+  grid-column: 1 / -1;
+  display: flex;
+  justify-content: center;
+  /* Centra el slider único */
+  padding-top: 20px;
+  border-top: 1px dashed #00ffff;
+  z-index: 1;
+}
+
+.slider-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 45%;
+  /* Sigue siendo ancho para pantallas grandes */
+  max-width: 400px;
+  /* Limita el ancho del slider */
+}
+
+.slider-group label {
+  font-size: 1em;
+  margin-bottom: 10px;
+  color: #00ffff;
+  text-shadow: 0 0 5px rgba(0, 255, 255, 0.5);
+}
+
+.slider-wrapper {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 5px;
+}
+
+.slider {
+  /* -webkit-appearance: none; */
+  width: calc(100% - 60px);
+  /* Ajusta el ancho para los valores */
+  height: 10px;
+  background: #2a343d;
+  outline: none;
+  border-radius: 5px;
+  transition: background 0.2s ease-in-out;
+  border: 1px solid #00ffff;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #00ffff;
+  cursor: grab;
+  box-shadow: 0 0 10px rgba(0, 255, 255, 0.8);
+  transition: background 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.slider::-webkit-slider-thumb:hover {
+  background: #00e6e6;
+  box-shadow: 0 0 15px rgba(0, 255, 255, 1);
+}
+
+.slider-value {
+  width: 50px;
+  text-align: right;
+  font-size: 0.9em;
+  color: #c9d1d9;
+}
+
+/* !!! COLOCA ESTO DESPUÉS DE LAS REGLAS ANTERIORES !!! */
+  /* Esto asegura que active-key-press tenga la última palabra cuando se añade */
+  .control-button.active-key-press {
+    transform: scale(0.98);
+    /* Mantén la escala de :active si eso es lo que quieres */
+    box-shadow: 0 0 10px rgba(0, 255, 255, 0.8);
+    /* O un box-shadow más pronunciado */
+    background-color: #00ffff;
+    /* Este es el color que quieres que se aplique */
+    color: #0d1117;
+    /* Este es el color del texto que quieres que se aplique */
+  }
+
+  .control-button.active-key-press svg {
+    fill: #0d1117;
+  }
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .container {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto auto auto;
+    /* Simplificamos filas */
+    padding: 20px;
+    gap: 20px;
+  }
+
+  h1 {
+    grid-column: 1 / 2;
+    font-size: 1.5em;
+    margin-bottom: 15px;
+  }
+
+  .camera-section {
+    grid-column: 1 / 2;
+    padding: 10px;
+    order: 2;
+    /* Cambia el orden para que los controles queden arriba en móvil */
+  }
+
+  .camera-feed {
+    max-width: none;
+    width: 100%;
+  }
+
+  .headlights-button {
+    top: 15px;
+    right: 15px;
+    width: 70px;
+    /* Ajuste para móvil */
+    height: 70px;
+    /* Ajuste para móvil */
+  }
+
+  .headlights-button svg {
+    width: 30px;
+    height: 30px;
+  }
+
+  /* Los controles de dirección ahora ocupan todo el ancho y están centrados */
+  .controls {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    order: 1;
+    /* Ponemos los controles de dirección primero en móvil */
+  }
+
+  .control-button {
+    width: 70px;
+    height: 70px;
+    font-size: 1em;
+  }
+
+  .control-button svg {
+    width: 40px;
+    height: 40px;
+  }
+
+  .sliders-section {
+    flex-direction: column;
+    gap: 20px;
+    padding-top: 15px;
+    order: 3;
+    /* El slider va después de la cámara en móvil */
+  }
+
+  .slider-group {
+    width: 90%;
+  }
+
+}
